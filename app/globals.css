@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 213 68% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 213 68% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 68% 11%;
+    --primary: 213 68% 11%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 213 30% 95%;
+    --secondary-foreground: 213 68% 11%;
+    --muted: 213 20% 96%;
+    --muted-foreground: 213 20% 45%;
+    --accent: 46 63% 52%;
+    --accent-foreground: 213 68% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 213 20% 90%;
+    --input: 213 20% 90%;
+    --ring: 213 68% 30%;
+    --radius: 0.625rem;
+    --navy: #071A2F;
+    --royal: #123C69;
+    --gold: #D4AF37;
+    --emerald: #0F9D58;
+  }
+  .dark {
+    --background: 213 68% 8%;
+    --foreground: 0 0% 98%;
+    --card: 213 50% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 213 50% 12%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 46 63% 52%;
+    --primary-foreground: 213 68% 11%;
+    --secondary: 213 40% 18%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 213 40% 18%;
+    --muted-foreground: 213 20% 60%;
+    --accent: 46 63% 52%;
+    --accent-foreground: 213 68% 11%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 213 30% 22%;
+    --input: 213 30% 22%;
+    --ring: 46 63% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .animate-pulse-gold {
+    animation: pulse-gold 2s ease-in-out infinite;
+  }
+  .animate-typing {
+    animation: typing 1.4s ease-in-out infinite;
+  }
+  .glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(212, 175, 55, 0); }
+}
+
+@keyframes typing {
+  0%, 60%, 100% { opacity: 0.2; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-4px); }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slide-in-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-slide-in-right { animation: slide-in-right 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-slide-in-up { animation: slide-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-fade-in { animation: fade-in 0.6s ease forwards; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }
