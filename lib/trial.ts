@@ -12,7 +12,13 @@ export function getTrialDaysRemaining(subscription: Subscription | null): number
 
 export function isTrialActive(subscription: Subscription | null): boolean {
   if (!subscription) return false;
-  if (subscription.subscription_status !== 'trialing') return false;
+  
+  // If they upgraded, they are active, not trialing
+  if (subscription.subscription_status === 'active') return false;
+  if (subscription.subscription_status === 'canceled') return false;
+  
+  // FIX: If they have a valid future end date, treat them as active on trial, 
+  // even if status is null or a blank string upon sign up.
   if (!subscription.trial_ends_at) return false;
   return new Date(subscription.trial_ends_at) > new Date();
 }
